@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>BookClick! - Librería Virtual Escolar</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	
+	<style>
+		/* Navegación y Navbar */
+		.menu {
+			background-color: #2D3E50;
+			box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+		}
+		.navbar-brand img {
+			max-height: 40px;
+			width: auto;
+		}
+		.navbar-nav .nav-link {
+			color: #E8F1F5 !important;
+			font-weight: bold;
+		}
+		.navbar-nav .nav-link:hover {
+			color: #FF6F61 !important;
+		}
+
+		/* Cabecera / Jumbotron */
+		.jumbotron {
+			background-color: #2D3E50;
+			color: #E8F1F5;
+			padding: 120px 25px 80px 25px;
+			font-family: sans-serif;
+			text-align: center;
+		}
+		.jumbotron h1 {
+			color: #FF6F61;
+			font-family: Georgia, "Times New Roman", serif;
+			font-size: 65px;
+			font-weight: bold;
+			margin-bottom: 15px;
+			text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+		}
+		.jumbotron p {
+			color: #A8E6CF;
+			font-size: 20px;
+			font-weight: bold;
+			font-style: italic;
+			margin-bottom: 30px;
+		}
+		.jumbotron .form-inline {
+			display: inline-block;
+		}
+		.jumbotron input {
+			background-color: #FAFAFA;
+			color: #2D3E50;
+			border: 2px solid #2D3E50;
+			padding: 10px 15px;
+			font-size: 16px;
+			border-radius: 4px;
+			outline: none;
+		}
+		.jumbotron button {
+			background-color: #FF6F61;
+			color: #FFFFFF;
+			border: 2px solid #E25B4E;
+			padding: 10px 20px;
+			font-size: 16px;
+			font-weight: bold;
+			border-radius: 4px;
+			margin-left: 5px;
+		}
+
+		/* Base de contenedores */
+		.container-fluid {
+			padding: 60px 50px;
+		}
+
+		/* 1. Sección Acerca de */
+		.sec-acerca {
+			background-color: #FDFBF7;
+			color: #2D3E50;
+		}
+		.sec-acerca h2 {
+			color: #2D3E50;
+			font-weight: bold;
+		}
+		.sec-acerca h4 {
+			color: #4A6572;
+		}
+		.sec-acerca .btn-primary {
+			background-color: #2D3E50;
+			border-color: #1A252F;
+			font-weight: bold;
+		}
+
+		/* 2. Sección Nuestros Valores */
+		.by-mint {
+			background-color: #E8F5E9;
+			color: #1B5E20;
+		}
+		.by-mint h2 {
+			color: #2E7D32;
+			font-weight: bold;
+		}
+		.by-mint h4, .by-mint p {
+			color: #1B5E20;
+		}
+
+		/* 3. Sección Productos y Servicios */
+		.sec-productos {
+			background-color: #F0F4F8;
+			color: #2D3E50;
+		}
+		.sec-productos h2 {
+			color: #FF6F61;
+			font-weight: bold;
+		}
+		.sec-productos h4 {
+			color: #34495E;
+		}
+
+		/* Control de tamaño, bordes y sombra para todas las imágenes */
+		.container-fluid img {
+			max-width: 100%;
+			max-height: 200px;
+			width: auto;
+			height: auto;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			border-radius: 8px;
+			border: 3px solid #FFFFFF;
+			box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+		}
+
+		/* Tarjetas de Equipo y Puntos de Entrega */
+		.equipo {
+			background-color: #FFFFFF;
+			border: 1px solid #E0E0E0;
+			border-radius: 8px;
+			padding: 20px;
+			margin-bottom: 20px;
+			box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+		}
+		.equipo h3 {
+			color: #FF6F61;
+			font-size: 20px;
+			font-weight: bold;
+			margin-top: 10px;
+		}
+		.equipo h4 {
+			color: #4A6572;
+			font-size: 15px;
+		}
+
+		/* Iconos de contacto */
+		.icono {
+			color: #FF6F61;
+			font-size: 1.2rem;
+			margin-right: 10px;
+		}
+
+		/* Pie de página */
+		footer {
+			background-color: #2D3E50;
+			color: #E8F1F5;
+			padding: 25px;
+		}
+		footer a {
+			color: #A8E6CF;
+			text-decoration: none;
+		}
+		footer a:hover {
+			color: #FF6F61;
+		}
+		.bi-house-door-fill {
+			font-size: 30px;
+			color: #FF6F61;
+		}
+	</style>
+</head>
+<body id="top" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="60">
+
+	<!-- Navegación -->
+	<header>
+		<nav class="navbar navbar-expand-lg text-uppercase fixed-top menu">
+			<div class="container">
+				<a class="navbar-brand" href="#top">
+					<img src="img/logo" alt="BookClick Logo">
+				</a>
+				<button class="navbar-toggler btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item mx-0 mx-lg-1">
+							<a class="nav-link py-3 px-0 px-lg-3 rounded" href="#acerca">ACERCA DE</a>
+						</li>
+						<li class="nav-item mx-0 mx-lg-1">
+							<a class="nav-link py-3 px-0 px-lg-3 rounded" href="#productos">PRODUCTOS</a>
+						</li>
+						<li class="nav-item mx-0 mx-lg-1">
+							<a class="nav-link py-3 px-0 px-lg-3 rounded" href="#puntos">PUNTOS DE ENTREGA</a>
+						</li>
+						<li class="nav-item mx-0 mx-lg-1">
+							<a class="nav-link py-3 px-0 px-lg-3 rounded" href="#equipo">EQUIPO</a>
+						</li>
+						<li class="nav-item mx-0 mx-lg-1">
+							<a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contacto">CONTACTO</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Jumbotron -->
+		<div class="jumbotron">
+			<h1>BookClick!</h1>
+			<p>Todo lo que necesitas para estudiar y trabajar, ahora más cerca de ti.</p>
+			<form class="form-inline">
+				<input type="text" size="40" placeholder="Ingresa el nombre del producto">
+				<button type="button" class="btn">Buscar</button>
+			</form>	
+		</div>	
+	</header>
+
+	<!-- Sección Acerca de -->
+	<section id="acerca" class="container-fluid sec-acerca">
+		<div class="row">
+			<div class="col-sm-8">
+				<h2>Acerca de nuestro emprendimiento</h2>
+				<h4>Somos una librería virtual que permite a los estudiantes explorar los productos disponibles, realizar sus pedidos de manera rápida y recibirlos directamente en su salón de clases o en el lugar correspondiente dentro del colegio.</h4>
+				<p>Nuestro objetivo no es reemplazar la librería institucional, sino complementar sus servicios, ofreciendo productos que normalmente no se encuentran disponibles y brindando una experiencia de compra más cómoda, rápida y accesible para toda la comunidad educativa.</p>
+				<a href="about.html" class="btn btn-primary btn-lg">Más información</a>
+			</div>
+			<div class="col-sm-4">
+				<picture>
+					<source srcset="img/acerca_de.jpg" type="image/jpeg">
+					<img src="img/acerca_de.png" alt="Acerca de BookClick">
+				</picture>
+			</div>
+		</div>
+	</section>
+
+	<!-- Sección Nuestros Valores -->
+	<section class="container-fluid by-mint">
+		<div class="row">
+			<div class="col-sm-4">
+				<picture>
+					<source srcset="img/valores.jpg" type="image/jpeg">
+					<img src="img/valores.png" alt="Valores BookClick">
+				</picture>
+			</div>
+			<div class="col-sm-8">
+				<h2>Nuestros valores</h2>
+				<h4><strong>MISIÓN:</strong> Brindar a la comunidad educativa una plataforma virtual práctica, confiable y accesible para la adquisición de útiles escolares, materiales académicos y servicios complementarios, como impresiones, escaneos y fotocopias.</h4>
+				<p><strong>VISIÓN:</strong> Ser la librería virtual de referencia dentro de la institución educativa, reconocida por la calidad de sus productos, la eficiencia de su servicio y la innovación en la atención al cliente.</p>
+				<p><strong>VALORES:</strong> Trabajo en equipo, Honestidad, Innovación y Empatía.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Sección Productos y Servicios -->
+	<section id="productos" class="container-fluid text-center sec-productos">
+		<h2>NUESTROS PRODUCTOS Y SERVICIOS</h2>
+		<h4>Lo que te ofrecemos en BookClick!</h4>
+		<br>
+		<!-- Primera fila de productos -->
+		<div class="row">
+			<div class="col-sm-4">
+				<picture>
+					<source srcset="img/utiles.jpg" type="image/jpeg">
+					<img src="img/utiles.png" alt="Útiles escolares">
+				</picture>
+				<h4>ÚTILES ESCOLARES</h4>
+				<p>Cuadernos, lapiceros, marcadores y todo el material para tus clases.</p>
+			</div>
+			<div class="col-sm-4">
+				<picture>
+					<source srcset="img/impresiones.jpg" type="image/jpeg">
+					<img src="img/impresiones.png" alt="Impresiones">
+				</picture>
+				<h4>IMPRESIONES Y ESCANEOS</h4>
+				<p>Imprime tus trabajos y tareas rápidamente a color o blanco y negro.</p>
+			</div>
+			<div class="col-sm-4">
+				<picture>
+					<source srcset="img/fotocopias.jpg" type="image/jpeg">
+					<img src="img/fotocopias.png" alt="Fotocopias">
+				</picture>
+				<h4>FOTOCOPIAS</h4>
+				<p>Servicio de copias para tus guías de estudio y documentos.</p>
+			</div>
+		</div>
+		<br>
+		<!-- Segunda fila de productos -->
+		<div class="row">
+			<div class="col-sm-6">
+				<picture>
+					<source srcset="img/libros.jpg" type="image/jpeg">
+					<img src="img/libros.png" alt="Libros y guías">
+				</picture>
+				<h4>LIBROS Y GUÍAS</h4>
+				<p>Textos escolares y material didáctico de apoyo para tu aprendizaje.</p>
+			</div>
+			<div class="col-sm-6">
+				<picture>
+					<source srcset="img/accesorios.jpg" type="image/jpeg">
+					<img src="img/accesorios.png" alt="Accesorios escolares">
+				</picture>
+				<h4>ACCESORIOS Y TECNOLOGÍA</h4>
+				<p>Calculadoras, memorias USB, audífonos y accesorios escolares.</p>
+			</div>
+		</div>	
+	</section>
+
+	<!-- Sección Puntos de Entrega -->
+	<section id="puntos" class="container-fluid text-center by-mint">
+		<h2>Puntos de Entrega</h2><br>
+		<h4>Entregas rápidas dentro del colegio</h4>
+		<div class="row">
+			<div class="col-sm-4">
+				<img src="img/entrega_aula.jpg" alt="Entrega en Aula">
+				<p><strong>Salón de Clases</strong></p>
+				<p>Recibe tu pedido directamente en tu aula en los recesos.</p>
+			</div>
+			<div class="col-sm-4">
+				<img src="img/entrega_cafeteria.jpg" alt="Entrega en Cafetería">
+				<p><strong>Zona de Cafetería</strong></p>
+				<p>Punto de encuentro rápido durante el descanso general.</p>
+			</div>
+			<div class="col-sm-4">
+				<img src="img/entrega_porton.jpg" alt="Entrega en Portón">
+				<p><strong>Portón Principal</strong></p>
+				<p>Entrega de encargos especiales a la hora de salida.</p>
+			</div>
+		</div>	
+	</section>	
+
+	<!-- Sección Equipo de Trabajo -->
+	<section id="equipo" class="container-fluid">
+		<div class="text-center mb-4">
+			<h2>Equipo de trabajo</h2>
+			<h4>Atención rápida y entregas organizadas</h4>
+		</div>
+		<div class="row text-center">
+			<div class="col-md-4 col-sm-6">
+				<div class="equipo">
+					<img src="img/socio1.png" alt="Fundador 1">
+					<p class="mt-3">Coordinación de inventario, recepción de pedidos virtuales y logística.</p>
+					<h3>Fundador / Logística</h3>
+					<h4>Gestión de Inventario</h4>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="equipo">
+					<img src="img/socio2.png" alt="Fundador 2">
+					<p class="mt-3">Atención al cliente, recepción de impresiones y control de calidad.</p>
+					<h3>Fundador / Atención</h3>
+					<h4>Servicios Digitales</h4>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="equipo">
+					<img src="img/socio3.png" alt="Fundador 3">
+					<p class="mt-3">Gestión de entregas rápidas y administración del catálogo online.</p>
+					<h3>Fundador / Entregas</h3>
+					<h4>Distribución y Finanzas</h4>
+				</div>
+			</div>
+		</div>	
+	</section>
+
+	<!-- Sección de Contacto -->
+	<section id="contacto" class="container-fluid sec-productos">
+		<h2 class="text-center">CONTACTO Y PEDIDOS</h2>
+		<br>
+		<div class="row">
+			<div class="col-sm-5">
+				<h4>Información de contacto:</h4>
+				<p>
+					<a href="https://www.google.com/maps/place/Colegio+Montessoriano/@13.7038529,-89.2093744,17z/data=!3m1!4b1!4m6!3m5!1s0x8f6330f54a37cd4f:0x84452d6ef63955e0!8m2!3d13.7038477!4d-89.2067995!16s%2Fg%2F1tzgq8cg?entry=ttu" target="_blank" style="text-decoration:none; color:inherit;">
+						<span class="bi bi-geo-alt-fill icono"></span> Colegio Montessoriano
+					</a>
+				</p>
+				<p><span class="bi bi-whatsapp icono"></span> 7000-0000</p>
+				<p><span class="bi bi-envelope-at-fill icono"></span> contacto@bookclick.com</p>
+			</div>
+			<div class="col-sm-7">
+				<form>
+					<div class="row">
+						<div class="col-sm-6 form-group mb-3">
+							<input class="form-control" name="name" placeholder="Tu Nombre o Grado" type="text" required>
+						</div>
+						<div class="col-sm-6 form-group mb-3">
+							<input class="form-control" name="email" placeholder="Correo institucional" type="email" required>
+						</div>
+					</div>
+					<textarea class="form-control mb-3" name="pregunta" placeholder="¿Qué producto o archivo de impresión necesitas?" rows="4"></textarea>
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<button class="btn btn-primary" style="background-color: #2D3E50; border: none;" type="submit">Enviar Consulta</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<!-- Sección de Ubicación con Google Maps integrado -->
+	<section class="container-fluid">
+		<h3 class="text-center mb-4">Ubicación del Colegio</h3>
+		<div class="row">
+			<div class="col-sm-12">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.3262612984185!2d-89.20937442491107!3d13.703852898014521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6330f54a37cd4f%3A0x84452d6ef63955e0!2sColegio%20Montessoriano!5e0!3m2!1ses!2ssv!4v1700000000000!5m2!1ses!2ssv" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			</div>
+		</div>
+	</section>
+
+	<!-- Pie de página -->
+	<footer class="container-fluid text-center">
+		<a href="#top" title="Ir al inicio">
+			<span class="bi bi-house-door-fill"></span>
+		</a>
+		<p class="mt-2">Página creada por: <a href="#top" title="Visite nuestro sitio">www.bookclick.com</a></p>
+	</footer>
+
+	<!-- Script de desplazamiento suave -->
+	<script>
+		$(document).ready(function(){
+			$(".navbar a, footer a[href='#top']").on('click', function(event) {
+				if (this.hash !== "") {
+					event.preventDefault();
+					var hash = this.hash;
+					$('html, body').animate({
+						scrollTop: $(hash).offset().top - 50
+					}, 900, function(){
+						window.location.hash = hash;
+					});
+				}
+			});
+		});
+	</script>
+
+</body>
+</html>
